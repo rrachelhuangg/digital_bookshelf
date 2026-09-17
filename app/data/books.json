@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "the-left-hand-of-darkness",
+    "title": "The Left Hand of Darkness",
+    "author": "Ursula K. Le Guin",
+    "year": 1969,
+    "status": "finished",
+    "rating": 5,
+    "notes": "Winter is a whole planet and also a state of mind."
+  },
+  {
+    "slug": "piranesi",
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "year": 2020,
+    "status": "reading",
+    "rating": null,
+    "notes": "The House is beautiful and the Statues are kind."
+  },
+  {
+    "slug": "the-death-of-ivan-ilyich",
+    "title": "The Death of Ivan Ilyich",
+    "author": "Leo Tolstoy",
+    "year": 1886,
+    "status": "want-to-read",
+    "rating": null,
+    "notes": ""
+  },
+  {
+    "slug": "gathering-moss",
+    "title": "Gathering Moss",
+    "author": "Robin Wall Kimmerer",
+    "year": 2003,
+    "status": "finished",
+    "rating": 4,
+    "notes": "A bryologist's case for looking closely at small things."
+  }
+]

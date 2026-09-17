@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p class="count">{{ total }} book{{ '' if total == 1 else 's' }} on the shelf</p>
+
+  {% for status, shelf in shelves %}
+    {% if shelf %}
+      <section class="shelf">
+        <h2>{{ status.replace('-', ' ') }}</h2>
+        <ul>
+          {% for book in shelf %}
+            <li>
+              <a href="{{ url_for('main.book_detail', slug=book.slug) }}">{{ book.title }}</a>
+              <span class="byline">{{ book.author }} &middot; {{ book.year }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

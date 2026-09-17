@@ -1,0 +1,93 @@
+:root {
+  --ink: #1c1a17;
+  --paper: #fbf9f4;
+  --muted: #6d675e;
+  --rule: #e2dcd0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eae6df;
+    --paper: #161513;
+    --muted: #9c958a;
+    --rule: #33302b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  max-width: 42rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1rem/1.6 ui-serif, Georgia, "Times New Roman", serif;
+}
+
+a { color: inherit; }
+
+.wordmark {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.count,
+.byline,
+.status {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.shelf {
+  margin: 2.5rem 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}
+
+.shelf h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.shelf ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shelf li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.6rem;
+  align-items: baseline;
+  padding: 0.4rem 0;
+}
+
+.book h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.notes {
+  margin: 1.5rem 0;
+  border-left: 2px solid var(--rule);
+  padding-left: 1rem;
+}
+
+footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}

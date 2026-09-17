@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{{ config.SITE_TITLE }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <a class="wordmark" href="{{ url_for('main.index') }}">{{ config.SITE_TITLE }}</a>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+      <a href="{{ url_for('main.api_books') }}">books.json</a>
+    </footer>
+  </body>
+</html>
