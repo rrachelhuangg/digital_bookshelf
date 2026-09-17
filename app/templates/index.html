@@ -12,9 +12,7 @@
             {% set cover_url = url_for('static', filename='covers/' ~ book.cover) if book.cover else '' %}
             <button
               type="button"
-              class="book
-                {%- if face %} book--face
-                {%- elif loop.last and shelf|length > 2 %} book--lean{% endif %}"
+              class="book{% if face %} book--face{% endif %}"
               style="--h: {{ book.binding.height }}px; --w: {{ book.binding.width }}px; --cloth: {{ book.binding.cloth }}; --foil: {{ book.binding.foil }};{% if book.ratio %} --ratio: {{ book.ratio }};{% endif %}"
               aria-label="{{ book.title }} by {{ book.author }}"
               data-title="{{ book.title }}"

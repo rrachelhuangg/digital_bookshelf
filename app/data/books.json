@@ -60,15 +60,75 @@
     "favorite": false
   },
   {
-    "slug": "the-death-of-ivan-ilyich",
-    "title": "The Death of Ivan Ilyich",
-    "author": "Leo Tolstoy",
-    "year": 1886,
+    "slug": "Orbital",
+    "title": "Orbital",
+    "author": "Samantha Harvey",
+    "year": 2023,
     "status": "want-to-read",
     "rating": null,
     "notes": "",
-    "cover": "",
+    "cover": "orbital.jpg",
     "face_out": false,
     "favorite": false
+  },
+  {
+    "slug": "The Explorer's Gene",
+    "title": "The Explorer's Gene: Why We Seek Big Challenges, New Flavors, and the Blank Spots on the Map – How Neuroscience and Behavioral Psychology Explain Our Primal Urge to Explore",
+    "author": "Alex Hutchinson",
+    "year": 2025,
+    "status": "want-to-read",
+    "rating": null,
+    "notes": "",
+    "cover": "explorer.jpg",
+    "face_out": false,
+    "favorite": false
+  },
+  {
+    "slug": "The Witches of Cambridge",
+    "title": "The Witches of Cambridge",
+    "author": "Alice Hoffman",
+    "year": 2026,
+    "status": "want-to-read",
+    "rating": null,
+    "notes": "",
+    "cover": "cambridge.jpg",
+    "face_out": false,
+    "favorite": false
+  },
+  {
+    "slug": "E=mc²: A Biography of the World's Most Famous Equation",
+    "title": "E=mc²: A Biography of the World's Most Famous Equation",
+    "author": "David Bodanis",
+    "year": 2000,
+    "status": "finished",
+    "rating": 5,
+    "notes": "",
+    "cover": "emc2.jpg",
+    "face_out": false,
+    "favorite": true
+  },
+  {
+    "slug": "The Burning God",
+    "title": "The Burning God",
+    "author": "R.F. Kuang",
+    "year": 2020,
+    "status": "finished",
+    "rating": 5,
+    "notes": "",
+    "cover": "the_burning_god.jpg",
+    "face_out": true,
+    "favorite": true
+  },
+  {
+    "slug": "How to Live on 24 Hours a Day: The Original Guide to Living Life to the Full",
+    "title": "How to Live on 24 Hours a Day: The Original Guide to Living Life to the Full",
+    "author": "How to Live on 24 Hours a Day: The Original Guide to Living Life to the Full",
+    "year": 1908,
+    "status": "finished",
+    "rating": 5,
+    "notes": "",
+    "cover": "24_hours.jpg",
+    "face_out": false,
+    "favorite": true
   }
 ]

@@ -9,6 +9,10 @@
   --wood: #8a6641;
   --wood-dark: #5d4228;
   --cavity: #201a14;
+
+  /* Everything a book is made of multiplies by this, so one value shrinks
+     the whole bookcase on small screens. */
+  --scale: 1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,17 +77,29 @@ a {
   position: relative;
 }
 
-/* The recess the books stand in: darker at the back, lit from above. */
+/* The recess the books stand in: darker at the back, lit from above.
+   A shelf that runs out of room scrolls sideways rather than clipping, the
+   way you'd pan along a real one. The generous top padding leaves headroom
+   for a book to lift on hover without the scroll container cutting it off. */
 .shelf__books {
   display: flex;
   align-items: flex-end;
   gap: 2px;
-  min-height: 232px;
+  min-height: calc(232px * var(--scale));
   padding: 2.25rem 1.25rem 0;
   border-radius: 2px 2px 0 0;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.12) 38%, rgba(0, 0, 0, 0.35)),
     var(--cavity);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  /* Hidden because the cut-off book at the edge is the affordance. */
+  scrollbar-width: none;
+}
+
+.shelf__books::-webkit-scrollbar {
+  display: none;
 }
 
 .shelf__plank {
@@ -132,8 +148,9 @@ a {
 .book {
   position: relative;
   flex: 0 0 auto;
-  width: var(--w);
-  height: var(--h);
+  width: calc(var(--w) * var(--scale));
+  height: calc(var(--h) * var(--scale));
+  scroll-snap-align: start;
   border-radius: 2px 3px 3px 2px;
   /* Cylindrical shading down the spine, plus the page block peeking out. */
   background-image:
@@ -186,7 +203,7 @@ a {
 
 .book__spine {
   position: absolute;
-  inset: 26px 0;
+  inset: calc(26px * var(--scale)) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,25 +223,19 @@ a {
 }
 
 .book__title {
-  font-size: 0.7rem;
+  /* Scales with the spine so the lettering never outgrows its thickness. */
+  font-size: calc(0.7rem * var(--scale));
   letter-spacing: 0.035em;
 }
 
 .book__author {
-  font-size: 0.58rem;
+  font-size: calc(0.58rem * var(--scale));
   letter-spacing: 0.02em;
   opacity: 0.62;
 }
 
-.book:hover,
 .book:focus-visible {
   transform: translateY(-14px) rotate(-1.2deg);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.35) inset,
-    0 18px 22px -12px rgba(0, 0, 0, 0.85);
-}
-
-.book:focus-visible {
   outline: 2px solid var(--foil);
   outline-offset: 3px;
 }
@@ -234,27 +245,12 @@ a {
   transform: translateY(-26px) rotate(-2.5deg);
 }
 
-/* The last book on a full shelf leans into its neighbors. */
-.book--lean {
-  margin-left: 7px;
-  transform: rotate(6.5deg) translateY(1px);
-}
-
-.book--lean:hover,
-.book--lean:focus-visible {
-  transform: rotate(6.5deg) translateY(-12px);
-}
-
-.book--lean.is-pulled {
-  transform: rotate(6.5deg) translateY(-24px);
-}
-
 /* ---------- face-out display book ---------- */
 
 .book--face {
   /* Width comes from the cover frame, not the spine thickness. */
   width: auto;
-  height: 206px;
+  height: calc(206px * var(--scale));
   aspect-ratio: var(--ratio, 2 / 3);
   margin: 0 14px 0 8px;
   background-image: none;
@@ -295,13 +291,27 @@ a {
   transform-origin: left center;
 }
 
-.book--face:hover,
 .book--face:focus-visible {
   transform: perspective(900px) rotateY(-10deg) translateY(-14px);
 }
 
 .book--face.is-pulled {
   transform: perspective(900px) rotateY(-4deg) translateY(-22px) scale(1.02);
+}
+
+/* Lift on hover only where there is a real pointer. On a touchscreen a tap
+   leaves :hover stuck on, so the book would stay pulled out after closing. */
+@media (hover: hover) {
+  .book:hover {
+    transform: translateY(-14px) rotate(-1.2deg);
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+      0 18px 22px -12px rgba(0, 0, 0, 0.85);
+  }
+
+  .book--face:hover {
+    transform: perspective(900px) rotateY(-10deg) translateY(-14px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -313,7 +323,11 @@ a {
 /* ---------- peek panel ---------- */
 
 .peek {
+  /* Fills a phone screen minus a margin, but never grows past 24rem. */
+  width: calc(100vw - 2rem);
   max-width: 24rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
   margin: auto;
   padding: 2rem 2.25rem;
   border: none;
@@ -372,4 +386,44 @@ footer {
   padding-top: 1rem;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 34rem) {
+  :root {
+    /* Smaller books, so more of a shelf fits before it needs scrolling. */
+    --scale: 0.84;
+  }
+
+  body {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .wordmark {
+    margin-bottom: 1.5rem;
+  }
+
+  .bookcase {
+    /* Bleeds to the screen edges so the shelves feel wider than the phone. */
+    margin: 1.25rem -1rem 2rem;
+    padding: 0.5rem 0.4rem 0.2rem;
+    border-radius: 0;
+  }
+
+  .shelf__books {
+    padding: 2rem 0.75rem 0;
+  }
+
+  .shelf__label {
+    margin: 0.35rem 0.25rem 0.9rem;
+  }
+
+  .peek {
+    padding: 1.75rem 1.4rem;
+  }
+
+  .peek__cover {
+    width: 6.5rem;
+  }
 }
