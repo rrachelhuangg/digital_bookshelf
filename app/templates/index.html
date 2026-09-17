@@ -3,19 +3,58 @@
 {% block content %}
   <p class="count">{{ total }} book{{ '' if total == 1 else 's' }} on the shelf</p>
 
-  {% for status, shelf in shelves %}
-    {% if shelf %}
-      <section class="shelf">
-        <h2>{{ status.replace('-', ' ') }}</h2>
-        <ul>
+  <div class="bookcase">
+    {% for name, shelf in shelves %}
+      <section class="shelf shelf--{{ name }}" aria-labelledby="shelf-{{ name }}">
+        <div class="shelf__books">
           {% for book in shelf %}
-            <li>
-              <a href="{{ url_for('main.book_detail', slug=book.slug) }}">{{ book.title }}</a>
-              <span class="byline">{{ book.author }} &middot; {{ book.year }}</span>
-            </li>
+            {% set face = book.cover and book.face_out %}
+            {% set cover_url = url_for('static', filename='covers/' ~ book.cover) if book.cover else '' %}
+            <button
+              type="button"
+              class="book
+                {%- if face %} book--face
+                {%- elif loop.last and shelf|length > 2 %} book--lean{% endif %}"
+              style="--h: {{ book.binding.height }}px; --w: {{ book.binding.width }}px; --cloth: {{ book.binding.cloth }}; --foil: {{ book.binding.foil }};{% if book.ratio %} --ratio: {{ book.ratio }};{% endif %}"
+              aria-label="{{ book.title }} by {{ book.author }}"
+              data-title="{{ book.title }}"
+              data-author="{{ book.author }}"
+              data-year="{{ book.year }}"
+              data-status="{{ book.status.replace('-', ' ') }}"
+              data-rating="{{ book.rating or '' }}"
+              data-notes="{{ book.notes }}"
+              data-cover="{{ cover_url }}"
+            >
+              {% if face %}
+                <img class="book__cover" src="{{ cover_url }}" alt="" loading="lazy" />
+              {% else %}
+                <span class="book__spine">
+                  <span class="book__title">{{ book.title }}</span>
+                  <span class="book__author">{{ book.author }}</span>
+                </span>
+              {% endif %}
+            </button>
           {% endfor %}
-        </ul>
+          {% if not shelf %}
+            <p class="shelf__empty">nothing here yet</p>
+          {% endif %}
+        </div>
+        <div class="shelf__plank" aria-hidden="true"></div>
+        <h2 class="shelf__label" id="shelf-{{ name }}">{{ name.replace('-', ' ') }}</h2>
       </section>
-    {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
+
+  <dialog class="peek" id="peek" aria-labelledby="peek-title">
+    <button class="peek__close" type="button" data-close aria-label="Close">&times;</button>
+    <img class="peek__cover" data-field="cover" alt="" hidden />
+    <h2 class="peek__title" id="peek-title"></h2>
+    <p class="byline" data-field="byline"></p>
+    <p class="status" data-field="status"></p>
+    <p class="notes" data-field="notes"></p>
+  </dialog>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/shelf.js') }}" defer></script>
 {% endblock %}

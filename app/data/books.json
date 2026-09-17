@@ -1,21 +1,63 @@
 [
   {
-    "slug": "the-left-hand-of-darkness",
-    "title": "The Left Hand of Darkness",
-    "author": "Ursula K. Le Guin",
-    "year": 1969,
+    "slug": "Babel",
+    "title": "Babel",
+    "author": "R.F. Kuang",
+    "year": 2022,
     "status": "finished",
     "rating": 5,
-    "notes": "Winter is a whole planet and also a state of mind."
+    "notes": "Winter is a whole planet and also a state of mind.",
+    "cover": "babel.jpg",
+    "face_out": true,
+    "favorite": true
   },
   {
-    "slug": "piranesi",
-    "title": "Piranesi",
-    "author": "Susanna Clarke",
-    "year": 2020,
+    "slug": "The Secret History",
+    "title": "The Secret History",
+    "author": "Donna Tartt",
+    "year": 1992,
+    "status": "finished",
+    "rating": 5,
+    "notes": "Winter is a whole planet and also a state of mind.",
+    "cover": "the_secret_history.jpg",
+    "face_out": false,
+    "favorite": true
+  },
+  {
+    "slug": "Atmosphere",
+    "title": "Atmosphere",
+    "author": "Taylor Jenkins Reid",
+    "year": 2025,
+    "status": "finished",
+    "rating": 5,
+    "notes": "Winter is a whole planet and also a state of mind.",
+    "cover": "atmosphere.jpg",
+    "face_out": true,
+    "favorite": true
+  },
+  {
+    "slug": "What I Talk About When I Talk About Running",
+    "title": "What I Talk About When I Talk About Running",
+    "author": "Haruki Murakami",
+    "year": 2007,
+    "status": "finished",
+    "rating": 5,
+    "notes": "Winter is a whole planet and also a state of mind.",
+    "cover": "running.jpg",
+    "face_out": false,
+    "favorite": true
+  },
+  {
+    "slug": "Taipei Story",
+    "title": "Taipei Story",
+    "author": "R. F. Kuang",
+    "year": 2026,
     "status": "reading",
     "rating": null,
-    "notes": "The House is beautiful and the Statues are kind."
+    "notes": "The House is beautiful and the Statues are kind.",
+    "cover": "taipei_story.jpg",
+    "face_out": true,
+    "favorite": false
   },
   {
     "slug": "the-death-of-ivan-ilyich",
@@ -24,15 +66,9 @@
     "year": 1886,
     "status": "want-to-read",
     "rating": null,
-    "notes": ""
-  },
-  {
-    "slug": "gathering-moss",
-    "title": "Gathering Moss",
-    "author": "Robin Wall Kimmerer",
-    "year": 2003,
-    "status": "finished",
-    "rating": 4,
-    "notes": "A bryologist's case for looking closely at small things."
+    "notes": "",
+    "cover": "",
+    "face_out": false,
+    "favorite": false
   }
 ]

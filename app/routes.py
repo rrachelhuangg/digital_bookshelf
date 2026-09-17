@@ -1,24 +1,17 @@
-from flask import Blueprint, abort, jsonify, render_template
+from flask import Blueprint, jsonify, render_template
 
 from . import books
 
 bp = Blueprint("main", __name__)
 
-STATUSES = ["reading", "finished", "want-to-read"]
+# Top shelf first. "favorites" is a flag on a book, the rest are statuses.
+SHELVES = ["reading", books.FAVORITES, "finished", "want-to-read"]
 
 
 @bp.route("/")
 def index():
-    shelves = [(status, books.by_status(status)) for status in STATUSES]
+    shelves = [(name, books.shelved(name)) for name in SHELVES]
     return render_template("index.html", shelves=shelves, total=len(books.all_books()))
-
-
-@bp.route("/book/<slug>")
-def book_detail(slug):
-    book = books.get_book(slug)
-    if book is None:
-        abort(404)
-    return render_template("book.html", book=book)
 
 
 @bp.route("/api/books")

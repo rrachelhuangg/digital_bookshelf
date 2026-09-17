@@ -12,7 +12,7 @@ def create_app(config=None):
     app = Flask(__name__)
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("SECRET_KEY", "dev-only-not-for-production"),
-        SITE_TITLE=os.environ.get("SITE_TITLE", "Digital Bookshelf"),
+        SITE_TITLE=os.environ.get("SITE_TITLE", "2026 Digital Bookshelf"),
     )
     if config:
         app.config.from_mapping(config)

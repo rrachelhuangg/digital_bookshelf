@@ -3,7 +3,14 @@
 {% block title %}{{ book.title }} &middot; {{ config.SITE_TITLE }}{% endblock %}
 
 {% block content %}
-  <article class="book">
+  <article class="book-page">
+    {% if book.cover %}
+      <img
+        class="peek__cover"
+        src="{{ url_for('static', filename='covers/' ~ book.cover) }}"
+        alt="Cover of {{ book.title }}"
+      />
+    {% endif %}
     <h1>{{ book.title }}</h1>
     <p class="byline">{{ book.author }} &middot; {{ book.year }}</p>
     <p class="status">{{ book.status.replace('-', ' ') }}{% if book.rating %} &middot; {{ '★' * book.rating }}{% endif %}</p>
