@@ -381,11 +381,30 @@ a {
 }
 
 footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
   margin-top: 3rem;
   border-top: 1px solid var(--rule);
   padding-top: 1rem;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+/* Separator only shows when the note sits on the same line as the link. */
+.footer__note::before {
+  content: "·";
+  margin-right: 0.75rem;
+}
+
+@media (max-width: 34rem) {
+  footer {
+    flex-direction: column;
+  }
+
+  .footer__note::before {
+    content: none;
+  }
 }
 
 /* ---------- phones ---------- */

@@ -13,6 +13,7 @@
     <main>{% block content %}{% endblock %}</main>
     <footer>
       <a href="{{ url_for('main.api_books') }}">books.json</a>
+      <span class="footer__note">Built with Flask and Vercel · © Rachel Huang</span>
     </footer>
     {% block scripts %}{% endblock %}
   </body>
